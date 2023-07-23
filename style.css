@@ -1,0 +1,13 @@
+.btn {
+  background-color: white;
+  font-size: 2rem;
+  border: none;
+  border-bottom: 2px black solid;
+  cursor: pointer;
+}
+
+.btn.active {
+  cursor: auto;
+  background-color: black;
+  color: white;
+}
