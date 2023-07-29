@@ -1,3 +1,7 @@
+html {
+  background-color: #888888;
+}
+
 .btn {
   background-color: white;
   font-size: 2rem;
@@ -10,4 +14,12 @@
   cursor: auto;
   background-color: black;
   color: white;
+}
+
+.nav {
+  display: flex;
+}
+
+.noActive {
+  display: none;
 }
