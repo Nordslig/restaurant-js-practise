@@ -1,8 +1,6 @@
 const btns = document.querySelectorAll("button.btn");
 const mainSecs = document.querySelectorAll(".mainSec");
 
-console.log(mainSecs);
-
 const changeActiveBtn = (btn) => {
   btns.forEach(
     (btn) =>
@@ -12,20 +10,18 @@ const changeActiveBtn = (btn) => {
   btn.classList.toggle("active");
   btn.setAttribute("disabled", true);
 
-  mainSecs.forEach((sec) => {
-    if (
-      sec.classList.contains(
-        btn.innerText.toLowerCase() &&
-          mainSecs.forEach(
-            (sec) =>
-              !sec.classList.contains("noActive") &&
-              sec.classList.toggle("noActive")
-          )
-      )
-    )
-      sec.classList.toggle("noActive");
-    else console.log("What");
-  });
+  const mainSecsArr = [...mainSecs];
+
+  mainSecs.forEach(
+    ({ classList }) =>
+      !classList.contains("noActive") && classList.toggle("noActive")
+  );
+
+  const currentSec = mainSecsArr.find(({ classList }) =>
+    classList.contains(btn.innerText.toLowerCase())
+  );
+
+  currentSec.classList.toggle("noActive");
 };
 
 btns.forEach((btn) =>
