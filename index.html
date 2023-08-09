@@ -38,7 +38,10 @@
             <button class="btn">Dodaj</button>
           </li>
           <li>
-            <p>Kiełba - 14.53 zł</p>
+            <p class="dishContainer">
+              <span class="dishName">Kiełba, ale lepsza</span>
+              <span class="dishPrice">53.14 zł</span>
+            </p>
             <p>Lorem lorem lorem</p>
             <button class="btn">Dodaj</button>
           </li>
@@ -46,6 +49,9 @@
       </div>
       <div class="noActive mainSec cart">
         <h3>Cart</h3>
+        <div class="cart">
+          <ul class="cartList"></ul>
+        </div>
       </div>
       <div class="noActive mainSec contact">
         <h3>Contact</h3>
@@ -55,7 +61,9 @@
       </div>
     </main>
   </body>
+  <script src="./scripts/globalVariables.js"></script>
   <script src="./scripts/changeActiveButton.js"></script>
+  <script src="./scripts/showCart.js"></script>
   <script src="./scripts/dishesList.js"></script>
   <script src="./scripts/addItemToCart.js"></script>
   <script src="./scripts/showAllDishes.js"></script>

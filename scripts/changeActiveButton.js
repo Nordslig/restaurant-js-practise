@@ -1,5 +1,7 @@
-const btns = document.querySelectorAll("button.btn");
+const btns = document.querySelectorAll("nav button.btn");
 const mainSecs = document.querySelectorAll(".mainSec");
+
+console.log(btns);
 
 const changeActiveBtn = (btn) => {
   btns.forEach(
@@ -20,6 +22,15 @@ const changeActiveBtn = (btn) => {
   const currentSec = mainSecsArr.find(({ classList }) =>
     classList.contains(btn.innerText.toLowerCase())
   );
+
+  switch (btn.innerText.toLowerCase()) {
+    case "cart":
+      showCart();
+      break;
+
+    default:
+      break;
+  }
 
   currentSec.classList.toggle("noActive");
 };

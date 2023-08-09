@@ -4,7 +4,7 @@ html {
 
 .btn {
   background-color: white;
-  font-size: 2rem;
+  font-size: 1.7rem;
   border: none;
   border-bottom: 2px black solid;
   cursor: pointer;
@@ -22,4 +22,7 @@ html {
 
 .noActive {
   display: none;
+}
+p {
+  font-size: 1.4rem;
 }
