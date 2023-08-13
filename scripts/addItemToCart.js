@@ -1,14 +1,19 @@
 const addBtns = document.querySelectorAll(".menu .btn");
 
-// console.log(addBtns);
+// window.addEventListener("load", () =>
+//   addBtns.forEach((btn) =>
+//     btn.addEventListener("click", () => {
+//       // if (cart.find((item => item.id === id))) {
+//       // }
+//       // const id = dishes.find(dish => dish.id === )
+//       console.log(btn);
+//       const itemName =
+//         btn.closest(`li`).firstElementChild.children[0].textContent;
+//       const itemPrice =
+//         btn.closest(`li`).firstElementChild.children[1].textContent;
+//       cart.push({ id, itemName, itemPrice, quantity: 1 });
 
-addBtns.forEach((btn) =>
-  btn.addEventListener("click", () => {
-    const id = Math.round(Math.random() * 100);
-    const dName = btn.closest(`li`).firstElementChild.children[0].textContent;
-    const dPrice = btn.closest(`li`).firstElementChild.children[1].textContent;
-    cart.push({ id, dName, dPrice });
-
-    console.log(cart);
-  })
-);
+//       console.log(cart);
+//     })
+//   )
+// );

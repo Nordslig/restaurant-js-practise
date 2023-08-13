@@ -27,6 +27,9 @@ const changeActiveBtn = (btn) => {
     case "cart":
       showCart();
       break;
+    case "menu":
+      showDishes();
+      break;
 
     default:
       break;
