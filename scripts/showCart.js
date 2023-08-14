@@ -2,11 +2,13 @@ const cartList = document.querySelector(".cartList");
 const divCart = document.querySelector("div.cart");
 
 const showCart = () => {
-  if (cart.length > 0) {
-    cartList.innerHTML = "";
+  cartList.innerHTML = "";
 
+  if (cart.length > 0) {
     cart.forEach((item) => {
       const { dishName, dishPrice, quantity } = item;
+
+      let newQuan = quantity;
 
       const li = document.createElement("li");
 
@@ -17,15 +19,42 @@ const showCart = () => {
       itemPrice.textContent = dishPrice;
 
       const itemQuantity = document.createElement("p");
-      itemQuantity.textContent = quantity;
+      itemQuantity.textContent = newQuan;
 
-      li.append(itemName, itemPrice, itemQuantity);
+      const btnDelete = document.createElement("button");
+      btnDelete.classList.add("btn", "substract");
+      btnDelete.textContent = "-";
+
+      btnDelete.addEventListener("click", () => {
+        newQuan--;
+        itemQuantity.textContent = newQuan;
+
+        if (newQuan === 0) {
+          const removedItemIdx = cart.indexOf(
+            (item) => item.dishName === itemName
+          );
+
+          li.remove(itemName, itemPrice, itemQuantity, btnDelete);
+
+          cart.splice(removedItemIdx, 1);
+
+          if (cart.length === 0) {
+            emptyCartText();
+          }
+        }
+      });
+
+      li.append(itemName, itemPrice, itemQuantity, btnDelete);
       cartList.append(li);
     });
   } else {
-    const p = document.createElement("p");
-    p.textContent = "You have no items in cart yet.";
-
-    divCart.append(p);
+    emptyCartText();
   }
+};
+
+const emptyCartText = () => {
+  const p = document.createElement("p");
+  p.textContent = "You have no items in cart yet.";
+
+  cartList.append(p);
 };
