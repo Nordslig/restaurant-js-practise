@@ -4,34 +4,55 @@ const divCart = document.querySelector("div.cart");
 const showCart = () => {
   cartList.innerHTML = "";
 
+  const fullPriceP = document.createElement("p");
+
+  let fullPrice = 0;
+
+  fullPriceP.textContent = fullPrice;
+
   if (cart.length > 0) {
-    cart.forEach((item) => {
-      const { dishName, dishPrice, quantity } = item;
-
-      let newQuan = quantity;
-
+    cart.forEach(({ dishName, dishPrice, quantity }) => {
       const li = document.createElement("li");
 
       const itemName = document.createElement("p");
       itemName.textContent = dishName;
 
       const itemPrice = document.createElement("p");
-      itemPrice.textContent = dishPrice;
+      itemPrice.textContent = `${dishPrice} zł`;
+
+      fullPrice += dishPrice;
+
+      if (quantity > 1) {
+        for (let i = 1; i < quantity; i++) {
+          fullPrice += dishPrice;
+        }
+      }
+
+      fullPriceP.textContent = fullPrice;
 
       const itemQuantity = document.createElement("p");
-      itemQuantity.textContent = newQuan;
+      itemQuantity.textContent = quantity;
 
       const btnDelete = document.createElement("button");
       btnDelete.classList.add("btn", "substract");
       btnDelete.textContent = "-";
 
       btnDelete.addEventListener("click", () => {
-        newQuan--;
-        itemQuantity.textContent = newQuan;
+        const subItem = cart.find(
+          ({ dishName }) => dishName === itemName.textContent
+        );
 
-        if (newQuan === 0) {
-          const removedItemIdx = cart.indexOf(
-            (item) => item.dishName === itemName
+        subItem.quantity--;
+
+        fullPrice -= dishPrice;
+
+        fullPriceP.textContent = fullPrice;
+
+        itemQuantity.textContent = subItem.quantity;
+
+        if (subItem.quantity === 0) {
+          const removedItemIdx = cart.findIndex(
+            (item) => item.dishName === itemName.textContent
           );
 
           li.remove(itemName, itemPrice, itemQuantity, btnDelete);
@@ -39,22 +60,23 @@ const showCart = () => {
           cart.splice(removedItemIdx, 1);
 
           if (cart.length === 0) {
-            emptyCartText();
+            emptyCartText(fullPriceP);
           }
         }
+        return;
       });
 
       li.append(itemName, itemPrice, itemQuantity, btnDelete);
-      cartList.append(li);
+      cartList.append(li, fullPriceP);
     });
   } else {
-    emptyCartText();
+    emptyCartText(fullPriceP);
   }
 };
 
-const emptyCartText = () => {
+const emptyCartText = (fullPriceP) => {
   const p = document.createElement("p");
   p.textContent = "You have no items in cart yet.";
 
-  cartList.append(p);
+  cartList.append(fullPriceP, p);
 };

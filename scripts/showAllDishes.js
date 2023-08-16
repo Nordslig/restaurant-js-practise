@@ -39,6 +39,8 @@ const showDishes = () => {
           sideDiv.append(sideName, sidePrice, sideBtn);
           li.append(...li.children, sideDiv);
         });
+        return (li.innerHTML +=
+          "<p style='color: red'>You must pick one sauce</p>");
       }
 
       const isInCart = cart.find(
@@ -50,8 +52,8 @@ const showDishes = () => {
       }
 
       cart.push({
-        dishName: dishName.textContent,
-        dishPrice: dishPrice.textContent,
+        dishName: name,
+        dishPrice: price,
         quantity: 1,
       });
     });
