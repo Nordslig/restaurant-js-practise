@@ -11,12 +11,24 @@ const showCart = () => {
   fullPriceP.textContent = fullPrice;
 
   if (cart.length > 0) {
-    cart.forEach(({ dishName, dishPrice, quantity }) => {
+    cart.forEach(({ dishName, dishPrice, quantity, type, addInfo }) => {
       const li = document.createElement("li");
 
       const itemName = document.createElement("p");
-      itemName.textContent = dishName;
+      itemName.textContent += dishName;
 
+      let itemAddInfo = document.createElement("p");
+
+      if (type === "dish") {
+        addInfo.forEach((aInf, i) => {
+          itemAddInfo.textContent += `${aInf.sauce}${
+            i === addInfo.length ? "," : ""
+          }`;
+        });
+        itemAddInfo.style.display = "block";
+      }
+
+      console.log(itemAddInfo);
       const itemPrice = document.createElement("p");
       itemPrice.textContent = `${dishPrice} zł`;
 
@@ -66,7 +78,7 @@ const showCart = () => {
         return;
       });
 
-      li.append(itemName, itemPrice, itemQuantity, btnDelete);
+      li.append(itemName, itemPrice, itemAddInfo, itemQuantity, btnDelete);
       cartList.append(li, fullPriceP);
     });
   } else {
