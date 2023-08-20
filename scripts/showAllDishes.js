@@ -31,7 +31,6 @@ const showDishes = () => {
         sides.sauces.forEach(({ name: sName, price: sPrice }) => {
           const sideDiv = document.createElement("div");
           sideDiv.style.display = "flex";
-          // sideDiv.classList.add('');
 
           const sideName = document.createElement("p");
           sideName.textContent = sName;
@@ -41,16 +40,19 @@ const showDishes = () => {
 
           const sideBtn = document.createElement("button");
           sideBtn.textContent = "+";
-          // sideBtn.classList.add("");
 
           sideBtn.addEventListener("click", () => {
-            // const isInCart = cart.find(
-            //   (item) => item.dishName === dishName.textContent
-            // );
+            // const isInCart = cart.find((item) => item.);
 
-            // if (isInCart) {
-            //   return isInCart.quantity++;
-            // }
+            const alreadyExist = cart.find(
+              (item) =>
+                item.dishName === dName &&
+                item.addInfo.find((item) => item.sauce === sName)
+            );
+
+            if (alreadyExist) {
+              return alreadyExist.quantity++;
+            }
 
             const curSauce = sides.sauces.find((sauce) => sauce.name === sName);
 
@@ -59,13 +61,22 @@ const showDishes = () => {
               dishPrice: price,
               quantity: 1,
               type,
-              addInfo: [{ sauce: curSauce.name }],
+              addInfo: [
+                {
+                  sauce: curSauce.name,
+                  ref: `${curSauce.name.toLocaleLowerCase()}`,
+                },
+              ],
             });
           });
           sideDiv.append(sideName, sidePrice, sideBtn);
 
           saucesDiv.append(sideDiv);
         });
+
+        if (li.children.length > 3) {
+          return;
+        }
 
         return li.append(...li.children, pWarning, saucesDiv);
       }

@@ -16,6 +16,20 @@ html {
   color: white;
 }
 
+.cartList .btn {
+  color: white;
+  margin: 0.4rem;
+  width: 4%;
+}
+
+.btn.add {
+  background-color: rgb(17, 79, 17);
+}
+
+.btn.substract {
+  background-color: rgb(181, 28, 28);
+}
+
 .nav {
   display: flex;
 }

@@ -28,7 +28,6 @@ const showCart = () => {
         itemAddInfo.style.display = "block";
       }
 
-      console.log(itemAddInfo);
       const itemPrice = document.createElement("p");
       itemPrice.textContent = `${dishPrice} zł`;
 
@@ -49,10 +48,40 @@ const showCart = () => {
       btnDelete.classList.add("btn", "substract");
       btnDelete.textContent = "-";
 
-      btnDelete.addEventListener("click", () => {
+      const btnAdd = document.createElement("button");
+      btnAdd.classList.add("btn", "add");
+      btnAdd.textContent = "+";
+
+      btnAdd.addEventListener("click", () => {
         const subItem = cart.find(
           ({ dishName }) => dishName === itemName.textContent
         );
+
+        subItem.quantity++;
+
+        fullPrice += dishPrice;
+
+        fullPriceP.textContent = fullPrice;
+
+        itemQuantity.textContent = subItem.quantity;
+      });
+
+      btnDelete.addEventListener("click", () => {
+        let subItem;
+
+        if (type === "dish") {
+          const aInfo = addInfo.find((item) => item);
+
+          subItem = cart.find(
+            (item) =>
+              item.dishName === dishName &&
+              item.addInfo.find((item) => item.sauce === aInfo.sauce)
+          );
+        } else {
+          subItem = cart.find(
+            ({ dishName }) => dishName === itemName.textContent
+          );
+        }
 
         subItem.quantity--;
 
@@ -67,7 +96,7 @@ const showCart = () => {
             (item) => item.dishName === itemName.textContent
           );
 
-          li.remove(itemName, itemPrice, itemQuantity, btnDelete);
+          li.remove(itemName, itemPrice, itemQuantity, btnAdd, btnDelete);
 
           cart.splice(removedItemIdx, 1);
 
@@ -78,7 +107,14 @@ const showCart = () => {
         return;
       });
 
-      li.append(itemName, itemPrice, itemAddInfo, itemQuantity, btnDelete);
+      li.append(
+        itemName,
+        itemPrice,
+        itemAddInfo,
+        itemQuantity,
+        btnAdd,
+        btnDelete
+      );
       cartList.append(li, fullPriceP);
     });
   } else {
