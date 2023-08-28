@@ -63,3 +63,22 @@ const drinks = {
 };
 
 const cart = [];
+
+const users = [
+  {
+    id: 1,
+    email: "test@test.com",
+    password: "1234",
+  },
+  {
+    id: 2,
+    email: "test2@test.com",
+    password: "1234",
+  },
+];
+
+const currentUser = {
+  id: "",
+  email: "",
+  password: "",
+};

@@ -1,8 +1,6 @@
 const btns = document.querySelectorAll("nav button.btn");
 const mainSecs = document.querySelectorAll(".mainSec");
 
-console.log(btns);
-
 const changeActiveBtn = (btn) => {
   btns.forEach(
     (btn) =>
@@ -23,19 +21,23 @@ const changeActiveBtn = (btn) => {
     classList.contains(btn.innerText.toLowerCase())
   );
 
-  switch (btn.innerText.toLowerCase()) {
+  switch (btn.innerText.replace(/\s/g, "").toLowerCase()) {
     case "cart":
       showCart();
       break;
     case "menu":
       showDishes();
       break;
+    case "signin":
+      signIn();
+      break;
 
     default:
       break;
   }
-
-  currentSec.classList.toggle("noActive");
+  if (currentSec) {
+    currentSec.classList.toggle("noActive");
+  }
 };
 
 btns.forEach((btn) =>

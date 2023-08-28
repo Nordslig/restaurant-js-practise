@@ -18,6 +18,7 @@
       <nav class="nav">
         <ul>
           <li><button class="btn cart">Cart</button></li>
+          <li><button class="btn singIn">Sign in</button></li>
         </ul>
       </nav>
     </header>
@@ -28,30 +29,14 @@
     </nav>
     <main>
       <div class="mainSec menu">
-        <ul class="menu dishList">
-          <!-- <li>
-            <p class="dishContainer">
-              <span class="dishName"> Kiełba </span>
-              <span class="dishPrice">14.53 zł</span>
-            </p>
-            <p>Lorem lorem lorem</p>
-            <button class="btn">Dodaj</button>
-          </li>
-          <li>
-            <p class="dishContainer">
-              <span class="dishName">Kiełba, ale lepsza</span>
-              <span class="dishPrice">53.14 zł</span>
-            </p>
-            <p>Lorem lorem lorem</p>
-            <button class="btn">Dodaj</button>
-          </li> -->
-        </ul>
+        <ul class="menu dishList"></ul>
       </div>
       <div class="noActive mainSec cart">
         <h3>Cart</h3>
         <div class="cart">
           <ul class="cartList"></ul>
         </div>
+        <button class="btn order">Order</button>
       </div>
       <div class="noActive mainSec contact">
         <h3>Contact</h3>
@@ -63,6 +48,15 @@
         magni qui dolorem delectus expedita et molestias exercitationem earum
         modi.
       </div>
+      <div class="login noActive mainSec">
+        <form action="">
+          <label for="firstName" class="label">First Name</label>
+          <input type="text" />
+          <label for="lastName" class="label">Last name</label>
+          <input type="text" name="" id="" />
+          <button class="btn">Log in</button>
+        </form>
+      </div>
     </main>
   </body>
   <script src="./scripts/globalVariables.js"></script>
@@ -71,4 +65,6 @@
   <script src="./scripts/showCart.js"></script>
   <script src="./scripts/dishesList.js"></script>
   <script src="./scripts/addItemToCart.js"></script>
+  <script src="./scripts/checkout.js"></script>
+  <script src="./scripts/signIn.js"></script>
 </html>
